@@ -1,0 +1,44 @@
+@import "@solana/wallet-adapter-react-ui/styles.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[#060911] text-ink antialiased;
+  background-image:
+    radial-gradient(circle at top left, rgba(110,168,255,0.16), transparent 24%),
+    radial-gradient(circle at top right, rgba(100,241,214,0.12), transparent 18%),
+    linear-gradient(180deg, rgba(10,15,28,1) 0%, rgba(6,9,17,1) 100%);
+}
+
+::selection {
+  background: rgba(110, 168, 255, 0.35);
+  color: white;
+}
+
+.container-shell {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.panel {
+  @apply rounded-3xl border border-white/10 bg-white/[0.03] shadow-glow backdrop-blur;
+}
+
+.panel-subtle {
+  @apply rounded-2xl border border-white/8 bg-white/[0.02];
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #eef3ff 0%, #9bb9ff 50%, #64f1d6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

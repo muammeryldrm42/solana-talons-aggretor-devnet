@@ -1,0 +1,3 @@
+[workspace]
+members = ["crates/router-core"]
+resolver = "2"

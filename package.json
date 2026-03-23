@@ -1,0 +1,45 @@
+{
+  "name": "talons-aggregator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Vercel-friendly Solana Devnet swap aggregator dashboard with Rust guard-program scaffolding.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run build",
+    "devnet:airdrop": "node scripts/devnet/airdrop.mjs",
+    "devnet:verify": "node scripts/devnet/verify.mjs",
+    "devnet:setup": "node scripts/devnet/setup.mjs",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@solana/wallet-adapter-base": "^0.9.27",
+    "@solana/wallet-adapter-phantom": "^0.9.28",
+    "@solana/wallet-adapter-react": "^0.15.39",
+    "@solana/wallet-adapter-react-ui": "^0.9.39",
+    "@solana/wallet-adapter-solflare": "^0.6.32",
+    "@solana/wallet-adapter-wallets": "^0.19.37",
+    "@solana/web3.js": "^1.98.4",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.511.0",
+    "next": "14.2.25",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwind-merge": "^2.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.25"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}

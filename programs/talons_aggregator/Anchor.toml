@@ -1,0 +1,16 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.devnet]
+talons_aggregator = "Fg6PaFpoGXkYsidMpWxTWqkZ7FEfcYkgP7K6W2BeZ7FE"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "anchor test"
