@@ -34,7 +34,7 @@ body {
 }
 
 .panel-subtle {
-  @apply rounded-2xl border border-white/8 bg-white/[0.02];
+  @apply rounded-2xl border border-white/[0.08] bg-white/[0.02];
 }
 
 .text-gradient {

@@ -1,5 +1,6 @@
 "use client";
 
+import { Buffer } from "buffer";
 import { useMemo, useState } from "react";
 import { ArrowLeftRight, ChevronDown, Info, Route, Settings2, Wallet2 } from "lucide-react";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
@@ -125,7 +126,6 @@ export function SwapWorkbench() {
       const tx = new Transaction({
         feePayer: wallet.publicKey,
         recentBlockhash: blockhash,
-        lastValidBlockHeight,
       });
 
       const memo = `Talons Aggregator demo attestation | ${inputToken.symbol}->${outputToken.symbol} | protocol=${selectedQuote.protocol} | out=${selectedQuote.estimatedOut.toFixed(4)} | slippage=${slippageBps}`;
@@ -133,7 +133,7 @@ export function SwapWorkbench() {
         new TransactionInstruction({
           programId: MEMO_PROGRAM_ID,
           keys: [],
-          data: new TextEncoder().encode(memo),
+          data: Buffer.from(memo, "utf8"),
         })
       );
 
@@ -141,7 +141,7 @@ export function SwapWorkbench() {
       setSignature(sig);
       setStatus("Transaction submitted. Waiting for confirmation...");
 
-      await connection.confirmTransaction(sig, "confirmed");
+      await connection.confirmTransaction({ signature: sig, blockhash, lastValidBlockHeight }, "confirmed");
       setStatus("Confirmed on Devnet. This was a memo attestation, not a live swap.");
     } catch (sendError) {
       setError(sendError instanceof Error ? sendError.message : "Failed to send memo transaction.");
