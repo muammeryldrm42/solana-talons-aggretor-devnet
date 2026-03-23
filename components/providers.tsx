@@ -1,25 +1,9 @@
-"use client";
+import dynamic from "next/dynamic";
 
-import { useMemo } from "react";
-import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
-import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
-import { getRpcUrl, getNetwork } from "@/lib/solana";
+const ProvidersClient = dynamic(() => import("@/components/providers-client").then((mod) => mod.ProvidersClient), {
+  ssr: false,
+});
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const endpoint = useMemo(() => getRpcUrl(), []);
-  const network = useMemo(() => getNetwork(), []);
-  const wallets = useMemo(
-    () => [new PhantomWalletAdapter(), new SolflareWalletAdapter({ network: network as "devnet" })],
-    [network]
-  );
-
-  return (
-    <ConnectionProvider endpoint={endpoint} config={{ commitment: "confirmed" }}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>{children}</WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
-  );
+  return <ProvidersClient>{children}</ProvidersClient>;
 }

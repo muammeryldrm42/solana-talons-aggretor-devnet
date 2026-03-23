@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateQuotes } from "@/lib/demo-engine";
 import { TOKENS } from "@/lib/tokens";
+import { getQuoteMode } from "@/lib/config";
 
 export async function GET(request: NextRequest) {
   const search = request.nextUrl.searchParams;
@@ -8,7 +9,7 @@ export async function GET(request: NextRequest) {
   const outputMint = search.get("outputMint");
   const amount = Number(search.get("amount") ?? "0");
   const slippageBps = Number(search.get("slippageBps") ?? "50");
-  const mode = "demo";
+  const mode = getQuoteMode();
 
   if (!inputMint || !outputMint || !Number.isFinite(amount) || amount <= 0) {
     return NextResponse.json(
